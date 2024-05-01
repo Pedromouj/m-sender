@@ -1,0 +1,76 @@
+       
+  const [emailS, setSEmail] = useState("");
+  const [passwordS, setSPassword] = useState("");
+  const [Libelle, setLibelle] = useState("select your server");
+  const [type, setType] = useState("normal");
+       
+       
+       
+const insertServer = async (e) => {
+    e.preventDefault();
+    await axios.post(`${import.meta.env.VITE_API_BASE_URL}/server-insert`, {
+      Libelle,
+      type,
+      email: emailS,
+      password: passwordS,
+    });
+    history("/login");
+};
+           
+        <div className="txet-2xl font-semibold ml-3">
+          1 - Information of server
+        </div>
+        <form
+          onSubmit={insertServer}
+          className="flex flex-col   bg-white shadow-lg border rounded p-2 mx-auto mt-5"
+        >
+          <div className="flex items-center gap-5  w-[90%] mt-5 p-1 mx-auto">
+            <div className="w-full">
+              <label className="font-semibold text-lg" htmlFor="email">
+                Name of your server
+              </label>
+              <select
+                className="bg-white rounded-md p-2 border w-full cursor-pointer shadow"
+                onChange={(e) => setLibelle(e.target.value)}
+              >
+                <option value={"Google"}>Google</option>
+                <option value={"Yahoo"}>Yahoo</option>
+                <option value={"Outlook"}>Outlook</option>
+              </select>
+            </div>
+          </div>
+          <div className="flex flex-col w-[90%] mt-5 p-1 mx-auto">
+            <label className="font-semibold text-lg" htmlFor="email">
+              Email of server
+            </label>
+            <input
+              className="bg-white p-1 border shadow rounded px-3"
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+              id="email"
+              placeholder="example@xyz.com"
+              required
+            />
+          </div>
+          <div className="flex flex-col w-[90%] mt-5 p-1 mx-auto">
+            <label className="font-semibold text-lg" htmlFor="password">
+              Password of server
+            </label>
+            <input
+              className="bg-white p-1 border shadow rounded px-3"
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="*********"
+              type="password"
+              id="password"
+              required
+            />
+          </div>
+          <div className="w-full flex justify-center mb-4">
+            <button
+              type="submit"
+              className="bg-blue-600 text-white p-1 font-semibold rounded-md w-72 text-base mt-5 "
+            >
+              Submit
+            </button>
+          </div>
+        </form>
