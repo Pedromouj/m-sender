@@ -1,6 +1,7 @@
 const express = require("express");
 const { createTransport } = require("nodemailer");
 const cors = require("cors");
+const axios = require("axios");
 const bodyParser = require("body-parser");
 const { AuthenticateUser } = require("./Controllers/LoginController");
 const {
@@ -21,6 +22,10 @@ const {
   allUsers,
   updateUserpass,
 } = require("./Controllers/SettingController");
+const {
+  showAllHistory,
+  createHistory,
+} = require("./Controllers/HistoryController");
 const app = express();
 const port = 3001; // Change this to your desired port
 
@@ -40,11 +45,23 @@ app.put("/delete/server", deleteServerController);
 app.get("/user/:id", allUsers);
 app.put("/update/server", updateServerController);
 app.get("/activate/:token", activateEmail);
+app.get("/history/:user_id", showAllHistory);
+app.post("/history/create", createHistory);
 
 const messages = [];
 app.post("/send-emails", async (req, res) => {
-  const { recipientsName, user, pass, host, recipients, subject, Content } =
-    req.body;
+  const {
+    id_user,
+    recipientsName,
+    user,
+    pass,
+    host,
+    recipients,
+    subject,
+    Content,
+  } = req.body;
+  const currentDate = new Date();
+  const formattedDate = currentDate.toISOString();
   const transporter = createTransport({
     host,
     port: 587,
@@ -82,6 +99,11 @@ app.post("/send-emails", async (req, res) => {
           };
 
           try {
+            await axios.post("http://localhost:3001/history/create", {
+              email: recipient,
+              date_history: formattedDate,
+              id_user,
+            });
             await transporter.sendMail(mailOptions);
             console.log(`Email sent to ${recipient}`);
             sentCount++;
