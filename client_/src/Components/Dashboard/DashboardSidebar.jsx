@@ -4,6 +4,7 @@ import useApp from "../Tools/useApp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBookOpen,
+  faClockRotateLeft,
   faGear,
   faHome,
   faServer,
@@ -119,25 +120,6 @@ const DashboardSidebar = () => {
               </li>
             </Link>
 
-            <Link to={"/settings"}>
-              <li
-                onClick={() => setActive("Settings")}
-                className={` text-white transition-all ${
-                  Active === "Settings" &&
-                  "bg-[#303750] font-bold   border-l-4 rounded-none border-[#0fd1fe] w-auto"
-                } hover:bg-[#303750] duration-100 cursor-pointer   list-none mt-2 flex items-center p-2 rounded-lg     group`}
-              >
-                {!isOpenSidebar ? (
-                  <span className=" flex gap-5 items-center text-lg ">
-                    <FontAwesomeIcon icon={faGear} className="w-6 h-6" />
-                    Settings
-                  </span>
-                ) : (
-                  <FontAwesomeIcon icon={faGear} className="w-6 h-6" />
-                )}
-              </li>
-            </Link>
-
             <Link to={"/servers"}>
               <li
                 onClick={() => setActive("servers")}
@@ -153,6 +135,49 @@ const DashboardSidebar = () => {
                   </span>
                 ) : (
                   <FontAwesomeIcon icon={faServer} className="w-6 h-6" />
+                )}
+              </li>
+            </Link>
+
+            <Link to={"/history"}>
+              <li
+                onClick={() => setActive("history")}
+                className={` text-white transition-all ${
+                  Active === "history" &&
+                  "bg-[#303750] font-bold   border-l-4 rounded-none border-[#0fd1fe] w-auto"
+                } hover:bg-[#303750] duration-100 cursor-pointer   list-none mt-2 flex items-center p-2 rounded-lg     group`}
+              >
+                {!isOpenSidebar ? (
+                  <span className=" flex gap-5 items-center text-lg ">
+                    <FontAwesomeIcon
+                      icon={faClockRotateLeft}
+                      className="w-6 h-6"
+                    />
+                    History
+                  </span>
+                ) : (
+                  <FontAwesomeIcon
+                    icon={faClockRotateLeft}
+                    className="w-6 h-6"
+                  />
+                )}
+              </li>
+            </Link>
+            <Link to={"/settings"}>
+              <li
+                onClick={() => setActive("Settings")}
+                className={` text-white transition-all ${
+                  Active === "Settings" &&
+                  "bg-[#303750] font-bold   border-l-4 rounded-none border-[#0fd1fe] w-auto"
+                } hover:bg-[#303750] duration-100 cursor-pointer   list-none mt-2 flex items-center p-2 rounded-lg     group`}
+              >
+                {!isOpenSidebar ? (
+                  <span className=" flex gap-5 items-center text-lg ">
+                    <FontAwesomeIcon icon={faGear} className="w-6 h-6" />
+                    Settings
+                  </span>
+                ) : (
+                  <FontAwesomeIcon icon={faGear} className="w-6 h-6" />
                 )}
               </li>
             </Link>

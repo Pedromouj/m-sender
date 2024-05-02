@@ -10,6 +10,7 @@ import SettingPage from "./Components/Settings/SettingPage";
 import ServerPage from "./Components/Servers/ServerPage";
 import DocumentationPage from "./Components/Documentation/DocumentationPage";
 import { Route, Routes, useNavigate } from "react-router-dom";
+import HistoryPage from "./Components/History/HistoryPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/settings" element={<SettingPage />} />
             <Route path="/servers" element={<ServerPage />} />
             <Route path="/documenation" element={<DocumentationPage />} />
+            <Route path="/history" element={<HistoryPage />} />
           </Route>
         </Route>
       </Route>

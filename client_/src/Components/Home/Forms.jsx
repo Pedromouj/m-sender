@@ -63,7 +63,7 @@ const Forms = () => {
       const { data } = await axios.post(
         `${import.meta.env.VITE_API_BASE_URL}/send-emails`,
         {
-          iduser: UsersInfo.id,
+          id_user: UsersInfo.id,
           host: activateMail.host,
           user: activateMail.email,
           pass: activateMail.password,
