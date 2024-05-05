@@ -27,6 +27,20 @@ class HistoryModal {
       });
     });
   }
+
+  DeleteHistory(id_history, user_id) {
+    return new Promise((resolve, reject) => {
+      const query =
+        "Delete from history where  id_history  = ? AND id_user = ?";
+      db.query(query, [id_history, user_id], (err, res) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(res);
+        }
+      });
+    });
+  }
 }
 
 module.exports = new HistoryModal();

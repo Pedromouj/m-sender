@@ -25,6 +25,7 @@ const {
 const {
   showAllHistory,
   createHistory,
+  deleteHistoryController,
 } = require("./Controllers/HistoryController");
 const app = express();
 const port = 3001; // Change this to your desired port
@@ -47,6 +48,7 @@ app.put("/update/server", updateServerController);
 app.get("/activate/:token", activateEmail);
 app.get("/history/:user_id", showAllHistory);
 app.post("/history/create", createHistory);
+app.delete("/history/:id_history/:id_user", deleteHistoryController);
 
 const messages = [];
 app.post("/send-emails", async (req, res) => {
