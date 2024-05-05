@@ -59,7 +59,7 @@ const SettingPage = () => {
 
   return (
     <div className="w-full mt-8  flex flex-col ">
-      <ToastContainer autoClose={2000} />
+      <ToastContainer autoClose={1500} />
       <form
         onSubmit={modifyUser}
         className="bg-white shadow-md p-3 border rounded w-[80%] mx-auto"
@@ -115,12 +115,18 @@ const SettingPage = () => {
           </button>
         </div>
         <div className="flex flex-col p-2  gap-3 ml-1">
-          <div
-            onClick={() => setShowPasswordModal((prev) => !prev)}
-            className=" cursor-pointer underline flex items-center gap-2 text-blue-600 mt-5 "
-          >
-            <FontAwesomeIcon icon={faEdit} className="w-4 h-4" />
-            Change password
+          <div className="flex items-center gap-3 w-full  mt-5">
+            <div
+              onClick={() => setShowPasswordModal((prev) => !prev)}
+              className=" p-1.5 cursor-pointer underline flex items-center gap-2 text-blue-600 "
+            >
+              <FontAwesomeIcon icon={faEdit} className="w-4 h-4" />
+              Change password
+            </div>
+
+            <button className="bg-red-500 text-white p-1 rounded-md w-52  cursor-pointer hover:opacity-70 duration-100 transition-all">
+              Deactivate account
+            </button>
           </div>
         </div>
       </form>
@@ -150,7 +156,7 @@ const SettingPage = () => {
               id="pass"
               onChange={(e) => setPassword2(e.target.value)}
               placeholder="**********"
-              className="bg-white p-1 w-full shadow rounded-lg  px-1 rounded border "
+              className="bg-white p-1 w-full shadow rounded-lg  px-1  border "
               required
             />
           </div>
